@@ -90,7 +90,11 @@ export default {
                 alert('Please fill out all fields');
                 return;
             }
-            this.pageCreated({
+
+            // The $ means it's a public method and therefore encouraged to be used. 
+            // The parent has passed in a method annotated with @, so @page-created. This created a custom event, that the child can emit. The second param is the data it expects.
+            // We do not need to declare events in our components, but we can with the emits option.
+            this.$emit('pageCreated', {
                 pageTitle: this.pageTitle,
                 content: this.content,
                 link: {
@@ -99,6 +103,8 @@ export default {
                 },
                 published: this.published,
             })
+
+            // this.pageCreated()
 
             this.pageTitle = '',
                 this.content = '',
