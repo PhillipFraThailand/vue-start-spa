@@ -20,9 +20,7 @@ import PageViewer from './components/PageViewer.vue';
   export default {
     components: {
       Navbar,
-      'nav-bar': Navbar,
       PageViewer,
-      'page-viewer': PageViewer,
     },
      data() {
       return {
