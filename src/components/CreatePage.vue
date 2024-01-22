@@ -106,9 +106,9 @@ export default {
                 return;
             }
 
-            // The $ means it's a public method and therefore encouraged to be used. 
-            // The parent has passed in a method annotated with @, so @page-created. This created a custom event, that the child can emit. The second param is the data it expects.
-            // We do not need to declare events in our components, but we can with the emits option.
+            // The $ means it's a public method and therefore encouraged to be used. ,
+            // The parent has added an event listener, that listens on @page-created.
+            // This means when we emit an event with that name, it will trigger the listener in the parent. In this case we pass an object, and the event listener expects that object.
             this.$emit('pageCreated', {
                 pageTitle: this.pageTitle,
                 content: this.content,

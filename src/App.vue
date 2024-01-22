@@ -1,8 +1,10 @@
 <template>
-  <Navbar :pages="pages" :active-page="activePage" :nav-link-click="(index) => activePage = index" />
-
-  <!-- creating a custom event with @page-created by adding the @. -->
-  <CreatePage @page-created="pageCreated" />
+  <Navbar :pages="pages" :active-page="activePage" />
+  <page-viewer v-if="pages.length > 0" :page="pages[activePage]"></page-viewer>
+  <!-- the parent, in this case App is creating an event listener, that listens for emits of the name page-created. -->
+  <!-- The event listener is passing a method that takes an argument, if the child passes one in the emit,it will be given to the parent method. -->
+  <!-- Note that because the passed in a listener that runs a method that requires something, that doesn't mean that it is required to pass something in the emit so it could not get what it needs. -->
+  <CreatePage @pageCreated="pageCreated" />
 </template>
 
 <script>
@@ -18,6 +20,9 @@ export default {
   },
   created() {
     this.getPages();
+    this.$bus.$on('navbarLinkActivated', (index) => {
+      this.activePage = index;
+    });
   },
   data() {
     return {

@@ -3,9 +3,9 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">My Vue</a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li v-for="(page, index) in publishedPages" class="nav-item" :key="index">
-          <NavbarLink :page="page" :isActive="activePage === index" @click.prevent="navLinkClick(index)" />
-        </li>
+        <!-- index inside :index="index" is a reference to the index JavaScript variable that's currently in scope because of the v-for directive. -->
+        <NavbarLink v-for="(page, index) in publishedPages" class="nav-item" :key="index" :page="page" :index="index"
+          :isActive="activePage === index" @activated="$emit('activated')" />
       </ul>
       <button class="btn btn-primary" @click.prevent:="changeTheme()">
         Toggle theme
@@ -23,7 +23,7 @@ export default {
       theme: 'light',
     }
   },
-  props: ['pages', 'activePage', 'navLinkClick'],
+  props: ['pages', 'activePage'],
   components: {
     NavbarLink,
   },
