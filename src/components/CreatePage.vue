@@ -61,6 +61,21 @@
 
 
 export default {
+    // We can destructure param and validate them one by one with the emits option. - Emits can also be an array of strings.
+    emits: {
+        pageCreated({ pageTitle, content, link, published }) {
+            if (!pageTitle) {
+                return false;
+            }
+            if (!content) {
+                return false;
+            }
+            if (!link || !link.text || !link.url) {
+                return false;
+            }
+            return true;
+        }
+    },
     props: ['pageCreated'],
     computed: {
         isFormInvalid() {
