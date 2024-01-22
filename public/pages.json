@@ -1,0 +1,15 @@
+[{
+    "link": { "text": "Home", "url": "home.html" },
+    "pageTitle": "Home Page",
+    "content": "This isHome content"
+  },
+  {
+    "link": { "text": "About", "url": "about.html" },
+    "pageTitle": "About Page",
+    "content": "This is About content"
+  },
+  {
+    "link": { "text": "Contact", "url": "contact.html" },
+    "pageTitle": "Contact Page",
+    "content": "This is Contact content"
+}]

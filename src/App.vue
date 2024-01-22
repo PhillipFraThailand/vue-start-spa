@@ -1,6 +1,6 @@
 <template>
   <Navbar :pages="pages" :active-page="activePage" :nav-link-click="(index) => activePage = index" />
-  <PageViewer :page="pages[activePage]" />
+  <PageViewer v-if="pages.length > 0" :page="pages[activePage]" />
 </template>
 
 <script>
@@ -12,30 +12,26 @@ export default {
     Navbar,
     PageViewer,
   },
+  created() {
+    this.getPages();
+  },
   data() {
     return {
       activePage: 0,
-      theme: 'light',
-      pageTitle: 'Hello Vue',
-      content: 'Welcome to my first Vue app!',
-      pages: [
-        {
-          link: { text: 'Home', url: 'home.html' },
-          pageTitle: 'Home Page',
-          content: 'This is Home content'
-        },
-        {
-          link: { text: 'About', url: 'about.html' },
-          pageTitle: 'About Page',
-          content: 'This is About content'
-        },
-        {
-          link: { text: 'Contact', url: 'contact.html' },
-          pageTitle: 'Contact Page',
-          content: 'This is Contact content'
-        },
-      ]
+      pages: [],
     };
   },
+  methods: {
+    async getPages() {
+      try {
+        let res = await fetch('pages.json');
+        let data = await res.json();
+
+        this.pages = data;
+      } catch (error) {
+        console.log('error', error)
+      }
+    }
+  }
 }
 </script>
