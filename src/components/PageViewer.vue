@@ -7,7 +7,18 @@
 
 <script>
 export default {
-  props: ['page']
+  props: {
+    page: {
+      type: Object,
+      default(rawProps) {
+        return {
+          pageTitle: 'fallback pageTitle',
+          pageContent: 'fallback pageContent',
+          ...rawProps,
+        }
+      }
+    },
+  }
 }
 </script>
 

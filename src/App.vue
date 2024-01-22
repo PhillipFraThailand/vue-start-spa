@@ -1,6 +1,6 @@
 <template>
   <Navbar :pages="pages" :active-page="activePage" :nav-link-click="(index) => activePage = index" />
-  <PageViewer v-if="pages.length > 0" :page="pages[activePage]" />
+  <PageViewer :page="pages[activePage]" />
 </template>
 
 <script>
