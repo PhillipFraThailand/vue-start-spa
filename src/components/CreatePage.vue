@@ -5,7 +5,7 @@
   In order to update the pageTitle defined in the data, we bind the value of the input, to the data variable pageTitle.
   If we didn't do that, the pageTitle would keep the value it was initialized with, and not update.
 
-  We do not use computed values, as they generally are read only, cached and will only update when dependencies change.
+  We do not use computed values, as they generally only read values, they simply transform already existing data into new data.
   In the case of forms, we need to update the data when the input field value changes so, update the value which doesn't work with read only.
   Also, if we were to update the data variable, we would also need to reflect that in the input, e.g with masks etc.
 -->
@@ -59,11 +59,20 @@
 
 <script>
 
+
 export default {
     props: ['pageCreated'],
     computed: {
         isFormInvalid() {
             return !this.pageTitle || !this.content || !this.linkText || !this.linkUrl;
+        }
+    },
+    watch: {
+        // keep the linkText in sync with the pageTitle
+        pageTitle(newTitleValue, oldTitleValue) { // passed the new value in the first param and the old in the second.
+            if (this.linkText === oldTitleValue) { // if pageTitle changes, and the linkText is the old value, 
+                this.linkText = newTitleValue; // update the linkText to the new value.
+            }
         }
     },
     data() {
