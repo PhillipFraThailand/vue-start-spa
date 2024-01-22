@@ -19,7 +19,7 @@
                         <label for="" class="form-label">
                             Page Title
                         </label>
-                        <input id="" type="text" class="form-control" v-model="pageTitle">
+                        <input type="text" class="form-control" v-model="pageTitle">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">
@@ -40,11 +40,11 @@
                         <label for="" class="form-label">
                             Link URL
                         </label>
-                        <input id="" type="text" class="form-control" v-model="linkUrl">
+                        <input type="text" class="form-control" v-model="linkUrl">
                     </div>
                     <div class="mb-3">
-                        <input type="checkbox" class="form-check-input">
-                        Published
+                        <input type="checkbox" class="form-check-input" v-model="published">
+                        Publish to navbar
                     </div>
                 </div>
             </div>
@@ -72,6 +72,7 @@ export default {
             content: '',
             linkText: '',
             linkUrl: '',
+            published: true,
         };
     },
     methods: {
@@ -86,8 +87,15 @@ export default {
                 link: {
                     text: this.linkText,
                     url: this.linkUrl,
-                }
+                },
+                published: this.published,
             })
+
+            this.pageTitle = '',
+                this.content = '',
+                this.linkText = '',
+                this.linkUrl = '',
+                this.published = true
         },
     },
 }

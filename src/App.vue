@@ -44,6 +44,7 @@ export default {
     },
     pageCreated(pageObj) {
       console.log('pageObj', pageObj);
+      this.pages.push(pageObj); // Anything that mutates data in the data option, will update the UI in Vue, where in RN it might not.
     }
   }
 }

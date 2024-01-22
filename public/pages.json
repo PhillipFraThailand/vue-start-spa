@@ -1,15 +1,24 @@
 [{
     "link": { "text": "Home", "url": "home.html" },
     "pageTitle": "Home Page",
-    "content": "This isHome content"
+    "content": "This isHome content",
+    "published": true
   },
   {
     "link": { "text": "About", "url": "about.html" },
     "pageTitle": "About Page",
-    "content": "This is About content"
+    "content": "This is About content",
+    "published": true
+  },
+  {
+    "link": { "text": "unpublished", "url": "unpublished.html" },
+    "pageTitle": "An unpublished page",
+    "content": "This is content",
+    "published": false
   },
   {
     "link": { "text": "Contact", "url": "contact.html" },
     "pageTitle": "Contact Page",
-    "content": "This is Contact content"
+    "content": "This is Contact content",
+    "published": true
 }]
