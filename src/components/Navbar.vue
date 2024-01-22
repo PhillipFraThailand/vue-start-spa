@@ -1,46 +1,40 @@
 <template>
-<nav 
-  :class="[`navbar-${theme}`, `bg-${theme}`, 'navbar', 'navbar-expand-lg']"
->
-  <div class="container-fluid">
+  <nav :class="[`navbar-${theme}`, `bg-${theme}`, 'navbar', 'navbar-expand-lg']">
+    <div class="container-fluid">
       <a class="navbar-brand" href="#">My Vue</a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li v-for="(page, index) in pages" class="nav-item" :key="index">
-            <a
-                class="nav-link"
-                :class="{active: activePage === index}"
-                aria-current="page"
-                :href="page.link.url"
-                :title="`This link goes to the ${page.pageTitle} page`"
-                @click.prevent="navLinkClick(index)"
-            >
-             {{ page.link.text }}
-            </a>
-          </li>
+        <li v-for="(page, index) in pages" class="nav-item" :key="index">
+          <NavbarLink :page="page" :isActive="activePage === index" @click.prevent="navLinkClick(index)" />
+        </li>
       </ul>
       <button class="btn btn-primary" @click.prevent:="changeTheme()">
         Toggle theme
       </button>
-  </div>
-</nav>
+    </div>
+  </nav>
 </template>
 
 <script>
-  export default {
-      methods: {
-          changeTheme() {
-              let theme = 'light'
-              if (this.theme === 'light') {
-                  theme = 'dark'
-              }
-              this.theme = theme
-          }
-      },
-      props: ['pages', 'activePage', 'navLinkClick'],
-      data() {
-          return {
-              theme: 'dark',
-          }
-      } 
+import NavbarLink from './NavbarLink.vue'
+
+export default {
+  components: {
+    NavbarLink,
+  },
+  methods: {
+    changeTheme() {
+      let theme = 'light'
+      if (this.theme === 'light') {
+        theme = 'dark'
+      }
+      this.theme = theme
     }
+  },
+  props: ['pages', 'activePage', 'navLinkClick'],
+  data() {
+    return {
+      theme: 'light',
+    }
+  }
+}
 </script>
