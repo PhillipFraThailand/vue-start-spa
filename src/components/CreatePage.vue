@@ -49,7 +49,6 @@
                 </div>
             </div>
 
-
             <div class="mb-3">
                 <button class="btn btn-primary" :disabled="isFormInvalid" @click.prevent="submitForm">Create Page</button>
             </div>
