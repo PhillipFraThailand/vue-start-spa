@@ -1,9 +1,12 @@
 <template>
   <li>
-    <a class="nav-link" :class="activeClasses" aria-current="page" :href="page.link.url"
-      :title="`This link goes to the ${page.pageTitle} page`" @click.prevent="$bus.$emit('navbarLinkActivated', index)">
+    <!-- router-links are provided globally due to vue-router plugin. They do not use href, but we can bind a value to ':to=""'. 
+      So we want the link to go to the index of the page 
+    -->
+    <router-link class="nav-link" :class="activeClasses" aria-current="page" :to="`/${index}`"
+      :title="`This link goes to the ${page.pageTitle} page`">
       {{ page.link.text }}
-    </a>
+    </router-link>
   </li>
 </template>
 
